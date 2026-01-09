@@ -12,4 +12,4 @@ services:
       - ROS_LOCALHOST_ONLY=1
       - USE_MACADDRESS_NS=0
       - LIDAR_INTERFACE_DEV=${LIDAR_INTERFACE_DEV:-eth0}
-    command: ros2 launch rslidar_sdk ros2_start.py
+    command: ros2 launch rslidar_sdk start.py
