@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [Unreleased]
+
+### Added
+- Added support for **ROS2 Jazzy** (Ubuntu 24.04).
+- Added `Dockerfile` for ROS2 Jazzy build (now includes automatic `rs_driver` submodule handling).
+- Added a dedicated `ros_entrypoint.sh` for the Docker image to source both ROS and local workspace.
+- Added GitHub Actions workflow for multi-platform Docker builds (linux/amd64, linux/arm64).
+- Added `docker-compose.yml` for simplified deployment.
+- Added `launch/ros2_start.py` as a distro-agnostic launch script.
+- Added documentation for ROS2 Jazzy and Docker Compose in `README.md`.
+
+### Changed
+- Updated `CMakeLists.txt` to use C++17 for ROS2 builds.
+- Updated `launch/humble_start.py` to be distro-agnostic and handle DDS installation for Jazzy.
+- Updated `README.md` and `README_CN.md` with ROS2 Jazzy installation links.
+
 ## v1.5.18 2025-07-15
 
 ### Added

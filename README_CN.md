@@ -81,8 +81,9 @@ git submodule update
 + Ubuntu 18.04 - ROS2 Eloquent desktop
 + Ubuntu 20.04 - ROS2 Galactic desktop
 + Ubuntu 22.04 - ROS2 Humble desktop
++ Ubuntu 24.04 - ROS2 Jazzy desktop
 
-安装方法请参考 https://index.ros.org/doc/ros2/Installation/Eloquent/Linux-Install-Debians/
+安装方法请参考 https://docs.ros.org/en/jazzy/Installation.html
 
 **请不要在一台电脑上同时安装ROS和ROS2，以避免可能的版本冲突，和手工安装其他库（如Yaml）的麻烦。**
 

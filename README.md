@@ -83,8 +83,9 @@ To use rslidar_sdk in the ROS2 environment, please install below libraries.
 + Ubuntu 18.04 - ROS2 Eloquent desktop
 + Ubuntu 20.04 - ROS2 Galactic desktop
 + Ubuntu 22.04 - ROS2 Humble desktop
++ Ubuntu 24.04 - ROS2 Jazzy desktop
 
-For installation, please refer to https://index.ros.org/doc/ros2/Installation/Eloquent/Linux-Install-Debians/
+For installation, please refer to https://docs.ros.org/en/jazzy/Installation.html
 
 **Please do not install ROS and ROS2 on the same computer, to avoid possible conflict and manually install some libraries, such as Yaml.**
 
@@ -140,6 +141,21 @@ ros2 launch rslidar_sdk start.py
 ```
 
 Another version of start.py may be used, since it is different on different versios of ROS2. For example, elequent_start.py is used instead for ROS2 elequent.
+
+### 4.3 Run with Docker Compose (ROS2 Jazzy)
+
+For a quick setup using Docker, you can use the provided `docker-compose.yml`.
+
+(1) Set the environment variables (optional, defaults are provided):
+```sh
+export LIDAR_DRIVER_VERSION=main
+export LIDAR_INTERFACE_DEV=eth0
+```
+
+(2) Run the container:
+```sh
+docker compose up -d
+```
 
 ## 5 Introduction to parameters
 

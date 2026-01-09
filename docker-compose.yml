@@ -1,0 +1,15 @@
+services:
+  rslidar_sdk:
+    container_name: rslidar_sdk
+    image: ghcr.io/metrolla-inc/rslidar_drivers:${LIDAR_DRIVER_VERSION:-latest}
+    network_mode: host
+    restart: always
+    ipc: host
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - ROS_LOCALHOST_ONLY=1
+      - USE_MACADDRESS_NS=0
+      - LIDAR_INTERFACE_DEV=${LIDAR_INTERFACE_DEV:-eth0}
+    command: ros2 launch rslidar_sdk ros2_start.py
