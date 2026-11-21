@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "recorded": "2026-11-21",
+  "vendors": [
+    {
+      "id": "rslidar_sdk",
+      "url": "https://github.com/RoboSense-LiDAR/rslidar_sdk.git",
+      "branch": "main",
+      "tags": [
+        "v*"
+      ],
+      "fork_ref": "main",
+      "base": {
+        "commit": "7c4ea25fada93442c3d390aa4ef05e240999b851",
+        "how": "merge-base of fork main and vendor main on 2026-11-21"
+      }
+    },
+    {
+      "id": "rs_driver",
+      "url": "https://github.com/RoboSense-LiDAR/rs_driver.git",
+      "branch": "main",
+      "tags": [
+        "v*"
+      ],
+      "base": {
+        "submodule": "src/rs_driver",
+        "how": "the submodule commit in the checked-out fork branch (cd35885 on main on 2026-11-21)"
+      }
+    }
+  ],
+  "not_checked": [
+    {
+      "name": "rslidar_msg",
+      "reason": "cloned unpinned from RoboSense-LiDAR/rslidar_msg at image build, so it is always the vendor tip"
+    }
+  ]
+}
