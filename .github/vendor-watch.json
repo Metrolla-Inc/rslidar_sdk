@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded": "2026-11-21",
+  "recorded": "2026-11-22",
   "vendors": [
     {
       "id": "rslidar_sdk",
@@ -11,8 +11,8 @@
       ],
       "fork_ref": "main",
       "base": {
-        "commit": "7c4ea25fada93442c3d390aa4ef05e240999b851",
-        "how": "merge-base of fork main and vendor main on 2026-11-21"
+        "commit": "8b4b4b7ff910799260347821084c59e1c73d50d5",
+        "how": "the vendor's v1.5.20 (8b4b4b7), merged into the fork on 2026-11-22 (D3 part B, feat/driver-contract); before that 7c4ea25 (v1.5.18)"
       }
     },
     {
@@ -24,14 +24,21 @@
       ],
       "base": {
         "submodule": "src/rs_driver",
-        "how": "the submodule commit in the checked-out fork branch (cd35885 on main on 2026-11-21)"
+        "how": "the submodule commit in the checked-out fork branch (897b14d = rs_driver v1.5.20 since 2026-11-22; cd35885 = v1.5.18 before)"
+      }
+    },
+    {
+      "id": "rslidar_msg",
+      "url": "https://github.com/RoboSense-LiDAR/rslidar_msg.git",
+      "branch": "master",
+      "tags": [
+        "v*"
+      ],
+      "base": {
+        "commit": "fe8a95cb242bd294cc3d5e3422f2093fb49a56ee",
+        "how": "RSLIDAR_MSG_COMMIT in the Dockerfile since 2026-11-22 (the vendor's newest commit, 2022; every earlier image cloned it unpinned)"
       }
     }
   ],
-  "not_checked": [
-    {
-      "name": "rslidar_msg",
-      "reason": "cloned unpinned from RoboSense-LiDAR/rslidar_msg at image build, so it is always the vendor tip"
-    }
-  ]
+  "not_checked": []
 }
