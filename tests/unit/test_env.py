@@ -312,3 +312,13 @@ def test_run_refuses_an_unwritable_dir(tmp_path):
         assert code == 1 and "cannot write" in err and "tmpfs" in err
     finally:
         ro.chmod(0o700)
+
+
+@pytest.mark.parametrize("value", ["2", "yes", "true", " ", "01"])
+def test_switch_values_other_than_1_refused(value):
+    (p,) = problems(METROLLA_DRIVER_CONTRACT=value)
+    assert p.startswith(f"METROLLA_DRIVER_CONTRACT={r.shown(value)} is not a contract version")
+
+
+def test_switch_1_accepted():
+    settings(METROLLA_DRIVER_CONTRACT="1")

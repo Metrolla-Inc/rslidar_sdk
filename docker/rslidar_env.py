@@ -259,6 +259,13 @@ def parse(env: Mapping[str, str]) -> Settings:
         sources[name] = "env"
         return value
 
+    # The switch itself (ros_entrypoint.sh hands over for any value but unset, empty and 0).
+    switch = env.get("METROLLA_DRIVER_CONTRACT")
+    if switch is not None and switch != "1":
+        problems.append(f"METROLLA_DRIVER_CONTRACT={shown(switch)} is not a contract version this "
+                        "image knows; accepted: 1 (this contract), or unset, empty or 0 for the "
+                        "released v1.5.18 behaviour")
+
     # Empty values: a template that rendered nothing must not fall back to a default silently.
     for name in REQUIRED + OPTIONAL:  # an empty DUAL_LIDAR means false, as in the Seyond image
         if name in env and env[name] == "":
