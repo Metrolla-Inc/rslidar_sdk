@@ -1,0 +1,32 @@
+# RSP48 seed=7 min=0.2 max=200
+cloud seq=0 ts=0.000000 height=48 width=1676 points=80448 nan=31231 dense=0 frame=rslidar hash=725570cb74d7adad
+cloud seq=1 ts=15281274529375.517578 height=48 width=1800 points=86400 nan=33651 dense=0 frame=rslidar hash=cf475a8f68be0055
+cloud seq=2 ts=3328584668136.964844 height=48 width=1800 points=86400 nan=33824 dense=0 frame=rslidar hash=84ff88217e07e8ed
+cloud seq=3 ts=17161895102424.375000 height=48 width=1800 points=86400 nan=33686 dense=0 frame=rslidar hash=4358dbdfd31470a1
+cloud seq=4 ts=7202891272430.691406 height=48 width=1800 points=86400 nan=33721 dense=0 frame=rslidar hash=46fb906748ef6a9f
+cloud seq=5 ts=6191010932069.361328 height=48 width=1800 points=86400 nan=33884 dense=0 frame=rslidar hash=148c6a06c4d5a871
+packets 1508 clouds 6
+# RSP48 seed=7 min=0 max=0
+cloud seq=0 ts=0.000000 height=48 width=1676 points=80448 nan=18910 dense=0 frame=rslidar hash=a2152ad213c4e934
+cloud seq=1 ts=15281274529375.517578 height=48 width=1800 points=86400 nan=20538 dense=0 frame=rslidar hash=cc25cd1729f0f893
+cloud seq=2 ts=3328584668136.964844 height=48 width=1800 points=86400 nan=20846 dense=0 frame=rslidar hash=f24b24ef11611583
+cloud seq=3 ts=17161895102424.375000 height=48 width=1800 points=86400 nan=20741 dense=0 frame=rslidar hash=c58b45049f0b11f8
+cloud seq=4 ts=7202891272430.691406 height=48 width=1800 points=86400 nan=20657 dense=0 frame=rslidar hash=c32a139fd4ccabd9
+cloud seq=5 ts=6191010932069.361328 height=48 width=1800 points=86400 nan=20593 dense=0 frame=rslidar hash=d8fa70a681ab3386
+packets 1508 clouds 6
+# RSP48 seed=1234 min=0.2 max=200
+cloud seq=0 ts=0.000000 height=48 width=1441 points=69168 nan=27380 dense=0 frame=rslidar hash=f6380f594e6af0ab
+cloud seq=1 ts=8682531720136.703125 height=48 width=1800 points=86400 nan=33586 dense=0 frame=rslidar hash=effc51916316a481
+cloud seq=2 ts=11446846250463.339844 height=48 width=1800 points=86400 nan=33683 dense=0 frame=rslidar hash=1afd9aed4c037ca5
+cloud seq=3 ts=11685704297399.207031 height=48 width=1800 points=86400 nan=33710 dense=0 frame=rslidar hash=f58809e770439b8a
+cloud seq=4 ts=12348024226442.705078 height=48 width=1800 points=86400 nan=33770 dense=0 frame=rslidar hash=1f0577e7666a9ecd
+cloud seq=5 ts=3540757534945.120605 height=48 width=1800 points=86400 nan=33743 dense=0 frame=rslidar hash=8e7466dfa3d5e968
+packets 1508 clouds 6
+# RSP48 seed=1234 min=0 max=0
+cloud seq=0 ts=0.000000 height=48 width=1441 points=69168 nan=16682 dense=0 frame=rslidar hash=f6344bfbd2031b6b
+cloud seq=1 ts=8682531720136.703125 height=48 width=1800 points=86400 nan=20530 dense=0 frame=rslidar hash=7f82a720f08724b3
+cloud seq=2 ts=11446846250463.339844 height=48 width=1800 points=86400 nan=20606 dense=0 frame=rslidar hash=6e7bd2236e706bc3
+cloud seq=3 ts=11685704297399.207031 height=48 width=1800 points=86400 nan=20473 dense=0 frame=rslidar hash=738aa56b31568cd1
+cloud seq=4 ts=12348024226442.705078 height=48 width=1800 points=86400 nan=20665 dense=0 frame=rslidar hash=8c5266fa9cc42f24
+cloud seq=5 ts=3540757534945.120605 height=48 width=1800 points=86400 nan=20671 dense=0 frame=rslidar hash=24bb53a58a958f58
+packets 1508 clouds 6

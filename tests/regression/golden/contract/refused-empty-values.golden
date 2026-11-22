@@ -1,0 +1,7 @@
+exit: 1
+--- stdout
+--- stderr
+rslidar-driver: refusing to start: LIDAR_MODEL is set but empty; accepted: a RoboSense model such as rshelios, rs128 or rsm1 (the full list is in the message when the name is unknown)
+rslidar-driver: refusing to start: SENSOR_IP is set but empty; accepted: the sensor's own IPv4 address, for example 192.168.1.200
+rslidar-driver: refusing to start: DATA_PORT is set but empty; accepted: a UDP port 1024-65535 (default 6699), or unset it for the default
+rslidar-driver: refusing to start: TIME_MODE is set but empty; accepted: host, sensor, gps or ptp (default host), or unset it for the default

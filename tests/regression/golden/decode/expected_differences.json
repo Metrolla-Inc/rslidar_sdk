@@ -1,0 +1,15 @@
+{
+  "comment": "Runs whose output rs_driver 1.5.20 changes on purpose (docs/VENDOR_DIFF.md). Every other run of every 1.5.18 model must decode exactly as 1.5.18 did.",
+  "differences": [
+    {
+      "run": "RSE1 seed=7 min=0 max=0",
+      "version": "v1.5.20",
+      "why": "RSE1's own minimum distance went from 0.2 m to 0.0 m (decoder_RSE1.hpp); it applies only when min_distance and max_distance are both 0, which neither the vendor config nor the contract sets"
+    },
+    {
+      "run": "RSE1 seed=1234 min=0 max=0",
+      "version": "v1.5.20",
+      "why": "as above"
+    }
+  ]
+}

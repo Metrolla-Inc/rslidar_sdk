@@ -1,0 +1,9 @@
+exit: 1
+--- stdout
+{
+  "refused": [
+    "TIME_MODE='ntp' is not supported by this image; accepted: host (the default), or sensor, gps or ptp (stamp with the sensor's own clock); RoboSense sensors take time from GPS (PPS and NMEA) or PTP, set on the sensor, not from NTP"
+  ]
+}
+--- stderr
+rslidar-driver: refusing to start: TIME_MODE='ntp' is not supported by this image; accepted: host (the default), or sensor, gps or ptp (stamp with the sensor's own clock); RoboSense sensors take time from GPS (PPS and NMEA) or PTP, set on the sensor, not from NTP

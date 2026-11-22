@@ -1,0 +1,14 @@
+# RSFAIRY seed=7 min=0.2 max=200
+cloud seq=0 ts=0.000000 height=96 width=20 points=1920 nan=1 dense=0 frame=rslidar hash=f5f3f77bada4554e
+cloud seq=1 ts=2973068641506.387695 height=96 width=8 points=768 nan=0 dense=0 frame=rslidar hash=9900e0d48b9275f5
+packets 1508 clouds 2
+# RSFAIRY seed=7 min=0 max=0
+cloud seq=0 ts=0.000000 height=96 width=20 points=1920 nan=136 dense=0 frame=rslidar hash=f0ca93a5e2c1763d
+cloud seq=1 ts=2973068641506.387695 height=96 width=8 points=768 nan=61 dense=0 frame=rslidar hash=b40b0e5cad9fb67c
+packets 1508 clouds 2
+# RSFAIRY seed=1234 min=0.2 max=200
+cloud seq=0 ts=0.000000 height=96 width=8 points=768 nan=1 dense=0 frame=rslidar hash=bb15073e1de1dfd7
+packets 1508 clouds 1
+# RSFAIRY seed=1234 min=0 max=0
+cloud seq=0 ts=0.000000 height=96 width=8 points=768 nan=64 dense=0 frame=rslidar hash=a8f884a72c842852
+packets 1508 clouds 1

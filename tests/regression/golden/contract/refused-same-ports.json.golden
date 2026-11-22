@@ -1,0 +1,9 @@
+exit: 1
+--- stdout
+{
+  "refused": [
+    "DEVICE_PORT=7000 is the same as DATA_PORT; accepted: a different port, the sensor sends data (MSOP) and device (DIFOP) packets to two ports"
+  ]
+}
+--- stderr
+rslidar-driver: refusing to start: DEVICE_PORT=7000 is the same as DATA_PORT; accepted: a different port, the sensor sends data (MSOP) and device (DIFOP) packets to two ports

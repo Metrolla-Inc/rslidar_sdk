@@ -1,0 +1,4 @@
+# RSE1 seed=1234 min=0 max=0
+cloud seq=0 ts=0.000000 height=1 width=35040 points=35040 nan=13688 dense=0 frame=rslidar hash=7530b17a989f0576
+cloud seq=1 ts=2652606682692.858398 height=1 width=60480 points=60480 nan=23831 dense=0 frame=rslidar hash=6586c7e1ce45df17
+packets 1508 clouds 2
