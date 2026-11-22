@@ -149,9 +149,10 @@ Another version of start.py may be used, since it is different on different vers
 
 For a quick setup using Docker, you can use the provided `docker-compose.yml`.
 
-(1) Set the environment variables (optional, defaults are provided):
+(1) Set the environment variables (`LIDAR_DRIVER_VERSION` is required: images are published for
+release tags only, `v1.5.18` and later; there is no `:main` or `:latest` image any more):
 ```sh
-export LIDAR_DRIVER_VERSION=main
+export LIDAR_DRIVER_VERSION=v1.5.18
 export LIDAR_INTERFACE_DEV=eth0
 ```
 
@@ -159,6 +160,15 @@ export LIDAR_INTERFACE_DEV=eth0
 ```sh
 docker compose up -d
 ```
+
+### 4.4 Metrolla driver contract (environment settings)
+
+With `METROLLA_DRIVER_CONTRACT=1` the image takes the model, sensor address, ports, frame, topic
+and time mode from the environment, refuses anything it does not understand, and runs as any user
+on a read-only root filesystem. Without it the image behaves as the released v1.5.18 image. See
+[docs/METROLLA_DRIVER_CONTRACT.md](docs/METROLLA_DRIVER_CONTRACT.md),
+[docs/VENDOR_DIFF.md](docs/VENDOR_DIFF.md) (what rs_driver 1.5.20 changes) and
+[TESTING.md](TESTING.md).
 
 ## 5 Introduction to parameters
 

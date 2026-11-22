@@ -11,7 +11,14 @@
 - Added `launch/ros2_start.py` as a distro-agnostic launch script.
 - Added documentation for ROS2 Jazzy and Docker Compose in `README.md`.
 
+- Metrolla driver contract, opt-in with `METROLLA_DRIVER_CONTRACT=1` (docs/METROLLA_DRIVER_CONTRACT.md); legacy behaviour unchanged.
+- CI with unit, regression and smoke tiers (TESTING.md).
+
 ### Changed
+- rs_driver 1.5.18 to 1.5.20 and the vendor's rslidar_sdk v1.5.20 merged (docs/VENDOR_DIFF.md).
+- `rslidar_sdk_node` ends on SIGTERM (docker stop) as on SIGINT.
+- Images are pushed for `v*` tags only, from the tagged commit, never over an existing tag; no more `:main`, branch or `:latest` images.
+- The Dockerfile refuses to build without the rs_driver submodule and pins rslidar_msg (fe8a95c).
 - Updated `CMakeLists.txt` to use C++17 for ROS2 builds.
 - Updated `launch/humble_start.py` to be distro-agnostic and handle DDS installation for Jazzy.
 - Updated `README.md` and `README_CN.md` with ROS2 Jazzy installation links.

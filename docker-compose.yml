@@ -1,7 +1,7 @@
 services:
   rslidar_sdk:
     container_name: rslidar_sdk
-    image: ghcr.io/metrolla-inc/rslidar_drivers:${LIDAR_DRIVER_VERSION:-latest}
+    image: ghcr.io/metrolla-inc/rslidar_drivers:${LIDAR_DRIVER_VERSION:?set LIDAR_DRIVER_VERSION to a release tag, for example v1.5.18}
     network_mode: host
     restart: always
     ipc: host
