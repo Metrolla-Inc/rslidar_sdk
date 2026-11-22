@@ -72,7 +72,7 @@ static void putCloud(std::shared_ptr<Cloud> c)
   if (g_points)
   {
     for (auto& p : c->points)
-      printf("p %.6f %.6f %.6f %.1f %u %.6f\n", p.x, p.y, p.z, p.intensity, p.ring, p.timestamp);
+      printf("p %.6f %.6f %.6f %.1f %u %.6f\n", p.x, p.y, p.z, (double)p.intensity, (unsigned)p.ring, p.timestamp);
   }
   g_clouds++;
 }
