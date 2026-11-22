@@ -1,0 +1,14 @@
+# RSM2 seed=7 min=0.2 max=200
+cloud seq=0 ts=0.000000 height=5 width=825 points=4125 nan=1620 dense=0 frame=rslidar hash=0206c3692b2382c8
+cloud seq=1 ts=4165648626760.902344 height=5 width=31500 points=157500 nan=61499 dense=0 frame=rslidar hash=2563a4cf540ad454
+packets 1508 clouds 2
+# RSM2 seed=7 min=0 max=0
+cloud seq=0 ts=0.000000 height=5 width=825 points=4125 nan=988 dense=0 frame=rslidar hash=c0fd944ed9bf8a33
+cloud seq=1 ts=4165648626760.902344 height=5 width=31500 points=157500 nan=37430 dense=0 frame=rslidar hash=e2efd5ef4238ea07
+packets 1508 clouds 2
+# RSM2 seed=1234 min=0.2 max=200
+cloud seq=0 ts=0.000000 height=5 width=9125 points=45625 nan=17732 dense=0 frame=rslidar hash=36341210a02693be
+packets 1508 clouds 1
+# RSM2 seed=1234 min=0 max=0
+cloud seq=0 ts=0.000000 height=5 width=9125 points=45625 nan=10863 dense=0 frame=rslidar hash=aa32082bbe761247
+packets 1508 clouds 1

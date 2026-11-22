@@ -1,0 +1,20 @@
+# RS80 seed=7 min=0.2 max=200
+cloud seq=0 ts=0.000000 height=80 width=1676 points=134080 nan=52498 dense=0 frame=rslidar hash=3644e0f8457f5c42
+cloud seq=1 ts=4183403186861.723633 height=80 width=1800 points=144000 nan=56369 dense=0 frame=rslidar hash=6e4d1c7b53e1472a
+cloud seq=2 ts=14817968944225.279297 height=80 width=1800 points=144000 nan=55978 dense=0 frame=rslidar hash=803ca3aef9b1339a
+packets 1508 clouds 3
+# RS80 seed=7 min=0 max=0
+cloud seq=0 ts=0.000000 height=80 width=1676 points=134080 nan=32012 dense=0 frame=rslidar hash=fa075e85240a194f
+cloud seq=1 ts=4183403186861.723633 height=80 width=1800 points=144000 nan=34507 dense=0 frame=rslidar hash=ca89b2e5e23e5522
+cloud seq=2 ts=14817968944225.279297 height=80 width=1800 points=144000 nan=34297 dense=0 frame=rslidar hash=04377369fbd64936
+packets 1508 clouds 3
+# RS80 seed=1234 min=0.2 max=200
+cloud seq=0 ts=0.000000 height=80 width=1441 points=115280 nan=44776 dense=0 frame=rslidar hash=c1944f63db474488
+cloud seq=1 ts=3404289575647.114258 height=80 width=1800 points=144000 nan=56246 dense=0 frame=rslidar hash=6c53514ef3837bee
+cloud seq=2 ts=9681277987953.746094 height=80 width=1800 points=144000 nan=56225 dense=0 frame=rslidar hash=6a063ff77e5591f2
+packets 1508 clouds 3
+# RS80 seed=1234 min=0 max=0
+cloud seq=0 ts=0.000000 height=80 width=1441 points=115280 nan=27298 dense=0 frame=rslidar hash=dbf04714f1bc23ef
+cloud seq=1 ts=3404289575647.114258 height=80 width=1800 points=144000 nan=34290 dense=0 frame=rslidar hash=319ce90479593256
+cloud seq=2 ts=9681277987953.746094 height=80 width=1800 points=144000 nan=34318 dense=0 frame=rslidar hash=ad8f42ec3669c82d
+packets 1508 clouds 3
