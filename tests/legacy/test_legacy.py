@@ -60,3 +60,40 @@ def test_image_default_runs_the_image_command():
     assert record["exit"] == 0
     assert record["exec"]["argv"] == ["ros2", "launch", "rslidar_sdk", "start.py"]
     assert record["exec"]["env"]["SOURCED"] == "/opt/ros/jazzy:/ros2_ws/install"
+
+
+SHEBANG = "#!/bin/bash\n"
+BLOCK_END = "# --- end of the Metrolla contract block; the v1.5.18 entrypoint follows ---\n"
+
+
+def test_entrypoint_is_v1_5_18_plus_the_opt_in_block_only():
+    current = CURRENT.read_text()
+    reference = REFERENCE.read_text()
+    assert current.startswith(SHEBANG) and reference.startswith(SHEBANG)
+    head, sep, tail = current.partition(BLOCK_END)
+    assert sep, "ros_entrypoint.sh has no contract block end marker"
+    assert tail == reference[len(SHEBANG):], "the legacy part of ros_entrypoint.sh changed"
+    block = [line for line in head[len(SHEBANG):].splitlines() if not line.startswith("#")]
+    assert block == [
+        'if [ -n "${METROLLA_DRIVER_CONTRACT:-}" ] && [ "${METROLLA_DRIVER_CONTRACT}" != "0" ]; then',
+        '    exec /opt/metrolla/rslidar/contract-entrypoint.sh "$@"',
+        "fi",
+    ]
+
+
+@pytest.mark.parametrize("value", ["1", "2", "yes", "true", " "])
+def test_any_other_value_hands_over_to_the_contract(value):
+    """Set and not "0": the contract entrypoint gets the command (and refuses values it does not
+    know, tests/regression); nothing of the legacy entrypoint runs."""
+    env, argv = read_case(HERE / "cases" / "image-default-cmd.env")
+    env["METROLLA_DRIVER_CONTRACT"] = value
+    record = run(CURRENT, env, argv)
+    assert record["exec"]["argv"] == ["contract-entrypoint.sh"] + argv
+    assert "SOURCED" not in record["exec"]["env"]
+
+
+def test_image_keeps_entrypoint_cmd_and_user():
+    dockerfile = (REPO / "Dockerfile").read_text()
+    assert 'ENTRYPOINT ["/ros_entrypoint.sh"]' in dockerfile
+    assert dockerfile.rstrip().endswith('CMD ["ros2", "launch", "rslidar_sdk", "start.py"]')
+    assert "\nUSER " not in dockerfile  # root, as in v1.5.18; the contract's user comes from compose

@@ -1,0 +1,4 @@
+exit: 1
+--- stdout
+--- stderr
+rslidar-driver: refusing to start: DEVICE_PORT is not set and DATA_PORT=6700 is not the default 6699; accepted: set DEVICE_PORT too, to the DIFOP port this sensor is set to send to (each sensor on a host needs its own DATA_PORT and DEVICE_PORT)

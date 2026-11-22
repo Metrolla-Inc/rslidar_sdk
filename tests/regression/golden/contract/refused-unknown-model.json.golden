@@ -1,0 +1,9 @@
+exit: 1
+--- stdout
+{
+  "refused": [
+    "LIDAR_MODEL='ruby' is not a RoboSense model this image knows; accepted (any case, '_' or '-', optional 'robosense-' prefix, 'rs' optional before a letter): rs16, rs32, rsbp, rshelios, rshelios-16p, rs128, rs80, rs48, rsp128, rsp80, rsp48, rsairy, rsairylite-eth, rsfairy, rsm1, rsm1-jumbo, rsm2, rsm3, rse1, rsmx, rsemx"
+  ]
+}
+--- stderr
+rslidar-driver: refusing to start: LIDAR_MODEL='ruby' is not a RoboSense model this image knows; accepted (any case, '_' or '-', optional 'robosense-' prefix, 'rs' optional before a letter): rs16, rs32, rsbp, rshelios, rshelios-16p, rs128, rs80, rs48, rsp128, rsp80, rsp48, rsairy, rsairylite-eth, rsfairy, rsm1, rsm1-jumbo, rsm2, rsm3, rse1, rsmx, rsemx

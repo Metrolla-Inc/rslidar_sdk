@@ -57,7 +57,7 @@ def test_decoding_unchanged_since_1_5_18(current, model):
     for run, text in got.items():
         if run in listed:
             assert text != expected[run], f"{run}: listed as a difference but decodes as 1.5.18 did"
-            golden = GOLDEN / listed[run]["version"] / f"{model}.txt"
+            golden = GOLDEN / listed[run]["version"] / (run.replace(" ", "_") + ".txt")
             if os.environ.get("REGEN"):
                 golden.parent.mkdir(exist_ok=True)
                 golden.write_text(f"# {run}\n{text}\n")
@@ -83,3 +83,17 @@ def test_goldens_are_rs_driver_1_5_18(model, tmp_path_factory):
     first = decode.run(exe, "synth", model, "7", "10", "0.2", "200").splitlines()[0]
     assert first.startswith("rs_driver 1.5.18 "), first
     assert decode.model_report(exe, model) == (GOLDEN / "v1.5.18" / f"{model}.txt").read_text()
+
+
+NEW_MODELS = ("RSFAIRY", "RSEMX")  # added in rs_driver 1.5.19; RSAIRYLITE_ETH (1.5.20) has no generator
+
+
+@pytest.mark.parametrize("model", NEW_MODELS)
+def test_models_new_in_1_5_19_decode(current, model):
+    """No 1.5.18 to compare with: the golden pins today's output, and it has point clouds."""
+    report = decode.model_report(current, model)
+    golden = GOLDEN / "v1.5.20" / f"new-{model}.txt"
+    if os.environ.get("REGEN"):
+        golden.write_text(report)
+    assert report == golden.read_text()
+    assert any(line.startswith("cloud ") and " points=0 " not in line for line in report.splitlines())

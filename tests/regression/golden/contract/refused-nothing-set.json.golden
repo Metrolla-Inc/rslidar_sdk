@@ -1,0 +1,11 @@
+exit: 1
+--- stdout
+{
+  "refused": [
+    "LIDAR_MODEL is not set; accepted (any case, '_' or '-', optional 'robosense-' prefix, 'rs' optional before a letter): rs16, rs32, rsbp, rshelios, rshelios-16p, rs128, rs80, rs48, rsp128, rsp80, rsp48, rsairy, rsairylite-eth, rsfairy, rsm1, rsm1-jumbo, rsm2, rsm3, rse1, rsmx, rsemx",
+    "SENSOR_IP is not set; accepted: the sensor's own IPv4 address, for example 192.168.1.200 (the RoboSense factory address)"
+  ]
+}
+--- stderr
+rslidar-driver: refusing to start: LIDAR_MODEL is not set; accepted (any case, '_' or '-', optional 'robosense-' prefix, 'rs' optional before a letter): rs16, rs32, rsbp, rshelios, rshelios-16p, rs128, rs80, rs48, rsp128, rsp80, rsp48, rsairy, rsairylite-eth, rsfairy, rsm1, rsm1-jumbo, rsm2, rsm3, rse1, rsmx, rsemx
+rslidar-driver: refusing to start: SENSOR_IP is not set; accepted: the sensor's own IPv4 address, for example 192.168.1.200 (the RoboSense factory address)
