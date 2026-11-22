@@ -1,0 +1,24 @@
+{
+  "exec": {
+    "argv": [
+      "ros2",
+      "launch",
+      "rslidar_sdk",
+      "start.py"
+    ],
+    "env": {
+      "DATA_PORT": "6699",
+      "DEVICE_PORT": "7788",
+      "LIDAR_MODEL": "rshelios",
+      "ROS_DISTRO": "jazzy",
+      "ROS_LOCALHOST_ONLY": "1",
+      "SENSOR_IP": "192.168.1.200",
+      "SENSOR_PORT": "6699",
+      "SENSOR_TYPE": "robosense",
+      "SOURCED": "/opt/ros/jazzy:/ros2_ws/install"
+    }
+  },
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

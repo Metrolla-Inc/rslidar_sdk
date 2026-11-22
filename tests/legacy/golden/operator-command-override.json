@@ -1,0 +1,21 @@
+{
+  "exec": {
+    "argv": [
+      "ros2",
+      "run",
+      "rslidar_sdk",
+      "rslidar_sdk_node",
+      "--ros-args",
+      "-p",
+      "config_path:=/data/config.yaml"
+    ],
+    "env": {
+      "ROS_DISTRO": "jazzy",
+      "ROS_LOCALHOST_ONLY": "1",
+      "SOURCED": "/opt/ros/jazzy:/ros2_ws/install"
+    }
+  },
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

@@ -1,0 +1,17 @@
+{
+  "exec": {
+    "argv": [
+      "ros2",
+      "launch",
+      "rslidar_sdk",
+      "start.py"
+    ],
+    "env": {
+      "ROS_DISTRO": "jazzy",
+      "SOURCED": "/opt/ros/jazzy:/ros2_ws/install"
+    }
+  },
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}
