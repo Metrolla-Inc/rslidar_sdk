@@ -135,14 +135,22 @@ Sensor side (not done by the driver): RoboSense ships sensors at 192.168.1.200 s
 192.168.1.102, MSOP 6699, DIFOP 7788 (the vendor's documentation, rs_driver doc/howto; not checked
 on a sensor). The destination address and both ports are set on the sensor's web page.
 
-## Vendor code change
+## Vendor code changes
 
-One, in its own commit: `rslidar_sdk_node` binds SIGTERM to the same handler as SIGINT. Before,
-rclcpp's SIGTERM handler shut ROS down but `main` kept waiting on a condition variable only that
-handler notifies, so `docker stop` waited 10 s and killed the node (exit 137). It affects legacy
-mode too: `docker stop` of a legacy container now ends the node at once. A SIGTERM during the
-first moments of start-up, before `main` starts waiting, is still missed (vendor design; the node
-is then killed after the grace period).
+Two commits of their own, both about stopping:
+
+1. `rslidar_sdk_node` binds SIGTERM to the same handler as SIGINT. Before, rclcpp's SIGTERM handler
+   shut ROS down but `main` kept waiting on a condition variable only that handler notifies, so
+   `docker stop` waited 10 s and killed the node (exit 137).
+2. With that alone the node crashed on every stop (exit 139 in the smoke test): rclcpp's handler
+   shut ROS down from its own thread while the point cloud thread was still publishing, and
+   `SourceDriver::stop()` joined its thread a second time from its destructor. Now rclcpp installs
+   no signal handlers (`SignalHandlerOptions::None`), `main` stops the driver and its threads
+   first and then shuts ROS down, the second join is skipped, and a signal that arrives before
+   `main` starts waiting is no longer lost.
+
+Both affect legacy mode too: `docker stop` (and Ctrl-C) of a legacy container now ends the node
+cleanly instead of killing or crashing it.
 
 ## Not proven (needs hardware)
 

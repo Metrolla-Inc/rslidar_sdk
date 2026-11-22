@@ -47,6 +47,7 @@ using namespace robosense::lidar;
 #ifdef ROS2_FOUND
 std::mutex g_mtx;
 std::condition_variable g_cv;
+static volatile sig_atomic_t g_stop = 0;  ///< set by sigHandler, so a signal before main waits is not lost
 #endif
 
 static void sigHandler(int sig)
@@ -56,6 +57,7 @@ static void sigHandler(int sig)
 #ifdef ROS_FOUND
   ros::shutdown();
 #elif ROS2_FOUND
+  g_stop = 1;
   g_cv.notify_all();
 #endif
 }
@@ -76,7 +78,9 @@ int main(int argc, char** argv)
 #ifdef ROS_FOUND
   ros::init(argc, argv, "rslidar_sdk_node", ros::init_options::NoSigintHandler);
 #elif ROS2_FOUND
-  rclcpp::init(argc, argv);
+  // sigHandler handles SIGINT and SIGTERM. rclcpp's own handlers would shut ROS down from another
+  // thread while the point cloud thread still publishes; main stops the driver first, then ROS.
+  rclcpp::init(argc, argv, rclcpp::InitOptions(), rclcpp::SignalHandlerOptions::None);
 #endif
 
   std::string config_path;
@@ -130,7 +134,13 @@ int main(int argc, char** argv)
   ros::spin();
 #elif ROS2_FOUND
   std::unique_lock<std::mutex> lck(g_mtx);
-  g_cv.wait(lck);
+  while (!g_stop)  // re-checked every 200 ms: a notify from the signal handler can be missed
+  {
+    g_cv.wait_for(lck, std::chrono::milliseconds(200));
+  }
+  lck.unlock();
+  demo_ptr.reset();  ///< stop the driver and its threads while ROS is still up
+  rclcpp::shutdown();
 #endif
 
   return 0;

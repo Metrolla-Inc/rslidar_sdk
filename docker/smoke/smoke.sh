@@ -77,8 +77,14 @@ show_logs() { echo "--- $1 log (tail)"; docker logs --tail 40 "$NAME" 2>&1 || tr
 
 # stop_exit: docker stop (SIGTERM, 10 s grace) and the container's exit code.
 stop_exit() {
+    local code
     docker stop -t 10 "$NAME" >/dev/null
-    docker inspect -f '{{.State.ExitCode}}' "$NAME"
+    code=$(docker inspect -f '{{.State.ExitCode}}' "$NAME")
+    if [[ "$code" != 0 ]]; then
+        echo "--- exit $code; log (tail)" >&2
+        docker logs --tail 30 "$NAME" >&2 2>&1 || true
+    fi
+    echo "$code"
 }
 
 # ---------------------------------------------------------------------------------------------

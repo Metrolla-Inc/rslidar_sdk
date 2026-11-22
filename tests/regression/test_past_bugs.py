@@ -40,7 +40,25 @@ def test_sigterm_ends_the_node():
     assert not sigterm_bound(released("node/rslidar_sdk_node.cpp"))
 
 
-# 2. Images were pushed for every push to main (and v* branches) as :main etc., from a moving
+# 2. With SIGTERM bound, the node then crashed on every stop (exit 139 in the smoke test, run
+#    45026526110): rclcpp's signal handler shut ROS down from its own thread while the point cloud
+#    thread was still publishing, and SourceDriver::stop() joined its thread a second time from its
+#    destructor (after NodeManager's destructor had already stopped it). Now rclcpp installs no
+#    handlers, main stops the driver and only then shuts ROS down, and the second join is skipped.
+def clean_shutdown(node: str, source_driver: str) -> bool:
+    main = node[node.index("int main("):]
+    return ("rclcpp::SignalHandlerOptions::None" in main
+            and 0 <= main.find("demo_ptr.reset();") < main.find("rclcpp::shutdown();")
+            and "point_cloud_process_thread_.joinable()" in source_driver)
+
+
+def test_stop_order_and_single_join():
+    assert clean_shutdown(current("node/rslidar_sdk_node.cpp"), current("src/source/source_driver.hpp"))
+    assert not clean_shutdown(released("node/rslidar_sdk_node.cpp"),
+                              released("src/source/source_driver.hpp"))
+
+
+# 3. Images were pushed for every push to main (and v* branches) as :main etc., from a moving
 #    branch, and over an existing tag; actions were not pinned.
 WORKFLOW = ".github/workflows/docker-build-push.yml"
 
@@ -69,7 +87,7 @@ def test_images_only_for_tags_from_the_tagged_commit():
     assert "pushes images for branches" in workflow_problems(released(WORKFLOW))
 
 
-# 3. The Dockerfile cloned rs_driver's default branch when the submodule was missing, and
+# 4. The Dockerfile cloned rs_driver's default branch when the submodule was missing, and
 #    rslidar_msg unpinned: the image's code depended on the day it was built.
 def dockerfile_problems(text: str) -> list[str]:
     found = []
