@@ -150,7 +150,10 @@ Another version of start.py may be used, since it is different on different vers
 For a quick setup using Docker, you can use the provided `docker-compose.yml`.
 
 (1) Set the environment variables (`LIDAR_DRIVER_VERSION` is required: images are published for
-release tags only, `v1.5.18` and later; there is no `:main` or `:latest` image any more):
+release tags only; there is no `:main` or `:latest` image any more). Release tags are
+`v<vendor version>-metrolla.<n>` from now on (owner, 22 Nov 2026), e.g. `v1.5.20-metrolla.1`; the
+fork's earlier `v1.5.18` keeps its image (that name is also the vendor's own tag, which new tags
+never reuse):
 ```sh
 export LIDAR_DRIVER_VERSION=v1.5.18
 export LIDAR_INTERFACE_DEV=eth0
