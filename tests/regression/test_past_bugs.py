@@ -102,3 +102,40 @@ def test_dockerfile_builds_pinned_sources():
     assert dockerfile_problems(current("Dockerfile")) == []
     assert dockerfile_problems(released("Dockerfile")) == ["clones rs_driver's moving branch",
                                                            "rslidar_msg unpinned"]
+
+
+# 5. The fork's release tag v1.5.18 had the same name as the vendor's v1.5.18 (a different commit),
+#    and the vendor's tags come with every vendor merge: any v* tag pushed an image. Owner, 22 Nov
+#    2026: Metrolla tags are v<vendor version>-metrolla.<n> and never reuse a vendor's tag.
+def run_tag_step(text: str, tmp_path: Path, ref_name: str, ref_type: str = "tag"):
+    import os
+
+    import yaml
+
+    job = yaml.safe_load(text)["jobs"]["build-and-push"]
+    script = next(s for s in job["steps"] if s.get("id") == "tag")["run"]
+    fake = tmp_path / "bin"
+    fake.mkdir(exist_ok=True)
+    (fake / "git").write_text("#!/bin/sh\necho 0123456789abcdef0123456789abcdef01234567\n")
+    (fake / "git").chmod(0o755)
+    out = tmp_path / "out"
+    out.write_text("")
+    env = dict(os.environ, PATH=f"{fake}:{os.environ['PATH']}", REF_TYPE=ref_type, REF_NAME=ref_name,
+               GITHUB_SHA="0123456789abcdef0123456789abcdef01234567", GITHUB_OUTPUT=str(out))
+    proc = subprocess.run(["bash", "-e", "-c", script], env=env, capture_output=True, text=True)
+    return proc.returncode, out.read_text(), proc.stderr
+
+
+def test_image_tags_never_reuse_a_vendor_tag(tmp_path):
+    for good in ("v1.5.20-metrolla.1", "v1.5.20-metrolla.12"):
+        code, out, err = run_tag_step(current(WORKFLOW), tmp_path, good)
+        assert code == 0, (good, err)
+        assert out == f"tag={good}\n"
+    for bad in ("v1.5.18", "v1.5.20", "v1.5.20-metrolla", "v1.5.20-metrolla.0", "v1.5.20-metrolla.1-rc"):
+        code, out, err = run_tag_step(current(WORKFLOW), tmp_path, bad)
+        assert code == 1 and out == "", bad
+        assert "v<vendor version>-metrolla.<n>" in err
+    # The released workflow pushed an image for the vendor's own tag name.
+    released_text = released(WORKFLOW).replace("${{ github.ref_name }}", "$REF_NAME")
+    code, out, _ = run_tag_step(released_text, tmp_path, "v1.5.20")
+    assert code == 0 and out == "tag=v1.5.20\n"

@@ -17,3 +17,8 @@ pyyaml==6.0.3`, check out the submodule, then the commands above. For `RS_DRIVER
 current rs_driver's listed differences and new models, never 1.5.18's).
 
 Not covered here (needs hardware): see docs/METROLLA_DRIVER_CONTRACT.md, "Not proven".
+
+Image tags (owner, 22 Nov 2026): `v<vendor version>-metrolla.<n>`, never a vendor's own tag (the
+first after rs_driver 1.5.20 would be `v1.5.20-metrolla.1`). The image workflow refuses any other
+`v*` tag and never overwrites an existing image tag; `tests/regression/test_past_bugs.py` runs its
+tag step on good and bad names.
